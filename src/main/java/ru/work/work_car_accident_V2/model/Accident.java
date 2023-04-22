@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -23,7 +24,7 @@ public class Accident {
     private String text;
     private String address;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "accident_id")
+    @JoinColumn(name = "type_id")
     private AccidentType type;
 
     @ManyToMany(fetch = FetchType.LAZY)
@@ -34,4 +35,6 @@ public class Accident {
     )
     private List<Rule> rules;
 
+    @OneToMany(mappedBy = "accident")
+    private List<Photo> photos = new ArrayList<>();
 }

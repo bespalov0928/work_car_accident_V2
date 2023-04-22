@@ -1,10 +1,6 @@
 package ru.work.work_car_accident_V2.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import org.springframework.context.annotation.Primary;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -18,10 +14,19 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(name = "password")
     private String password;
+    @Column(name = "username")
     private String username;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "authority_id")
-    private Authority authority;
-    private boolean enabled;
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "role")
+    private Role role;
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "status")
+    private Status status;
+
+    public User(String password, String username) {
+        this.password = password;
+        this.username = username;
+    }
 }

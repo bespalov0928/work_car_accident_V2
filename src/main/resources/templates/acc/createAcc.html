@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+    <title>Новый инцидент</title>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/index}">Главная страница</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container p-3">
+
+    <form th:action="@{/acc/save}" method="post" enctype="multipart/form-data">
+        <input type="text" name="id" id="id" th:value="0">
+
+        <div class="form-group">
+            <label for="name">Наименование инцидента</label>
+            <input type="text" class="form-control" name="name" id="name">
+        </div>
+
+        <div class="form-group">
+            <label for="address">Адрес инцидентас</label>
+            <input type="text" class="form-control" name="address" id="address">
+        </div>
+
+        <div class="form-group">
+            <label for="type.id">Событие</label>
+            <select class="form-control" id="type.id" name="type.id">
+                <option th:each="type:${types}" th:text="${type.name}" th:value="${type.id}"/>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="type.id">Статья</label>
+            <select multiple class="form-control" id="type.id" name="idRule">
+                <option th:each="rule:${rules}" th:text="${rule.name}" th:value="${rule.id}"/>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="text">Описание</label>
+            <textarea class="form-control" name="text" id="text"></textarea>
+        </div>
+
+        <!--        <div class="form-group">-->
+        <!--            <label for="files">Добавить фото</label>-->
+        <!--            <input type="file" class="form-control" multiple  name="files" id="files">-->
+        <!--        </div>-->
+
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+    </form>
+</div>
+
+<!--<div class="container p-3">-->
+<!--    <div class="form-group">-->
+<!--        <tr th:each="ph:${photos}">-->
+<!--            <img th:width="300" th:src="@{|/photo/getPhoto/${ph.getId()}|}">-->
+<!--        </tr>-->
+<!--    </div>-->
+<!--    <div class="row">-->
+<!--        <div class="col-4">-->
+<!--            <div class="p-1">-->
+<!--                <form th:action="@{/photo/delete}" method="post" enctype="multipart/form-data">-->
+<!--                    <input type="hidden" name="id" th:value="0">-->
+<!--                    <button type="submit" class="btn btn-primary">Удалить все фотографии</button>-->
+<!--                </form>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <form th:action="@{/photo/save}" method="post" enctype="multipart/form-data">-->
+<!--        <input type="hidden" th:value="0">-->
+<!--        <div class="row">-->
+<!--            <div class="col-9">-->
+<!--                <div class="p-1">-->
+<!--                    <input type="file" class="form-control" multiple name="files" id="files">-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-3">-->
+<!--                <div class="p-1">-->
+<!--                    <button type="submit" class="btn btn-primary">Сохранить файлы</button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </form>-->
+<!--</div>-->
+
+</body>
+</html>

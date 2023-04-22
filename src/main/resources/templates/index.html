@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+    <title>Начальная страница</title>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <div class="d-flex flex-row">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/acc/formCreateAcc}">Добавить инцидент</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/rule/formIndexRule}">Список статей</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/type/formIndexType}">Список событий</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-1">
+            <div class="d-flex flex-row-reverse p-1">
+                <ul class="nav">
+                    <li class="nav-item">
+<!--                        <a th:text="${user}"/>-->
+                        <h3><a th:text="${user}"/></h3>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-1">
+            <div class="d-flex flex-row-reverse p-1">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <form th:action="@{/auth/login}" method="GET" enctype="multipart/form-data" th:if="${user=='anonymousUser'}">
+                            <button type="submit" class="btn btn-primary">Войти</button>
+                        </form>
+                        <form th:action="@{/auth/logout}" method="POST" th:unless="${user=='anonymousUser'}">
+                            <button type="submit" class="btn btn-primary">Выйти</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-2">
+            <div class="d-flex flex-row-reverse p-1">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <form th:action="@{/user/formReg}" method="GET" enctype="multipart/form-data">
+                            <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="container p-3">
+<!--    <input type="text" name="user" id="user" th:value="${user}">-->
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <th>Название</th>
+                <th>Описание</th>
+                <th>Адрес</th>
+                <th>Событие</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="acc:${accidents}">
+                <td><a th:text="${acc.name}" th:href="@{|/acc/formUpdateAcc?id=${acc.id}|}"/></td>
+                <td><a th:text="${acc.text}"/></td>
+                <td><a th:text="${acc.address}"/></td>
+                <td><a th:text="${acc?.type?.name}"/></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+</body>
+</html>
+
