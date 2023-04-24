@@ -1,14 +1,12 @@
 package ru.work.work_car_accident_V2.controller;
 
 import lombok.AllArgsConstructor;
-//import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import ru.work.work_car_accident_V2.model.Accident;
 
-import ru.work.work_car_accident_V2.model.User;
 import ru.work.work_car_accident_V2.service.SimpleAccidentService;
 
 import java.util.Collection;

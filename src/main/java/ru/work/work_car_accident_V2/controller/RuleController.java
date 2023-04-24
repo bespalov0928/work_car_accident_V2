@@ -2,10 +2,7 @@ package ru.work.work_car_accident_V2.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import ru.work.work_car_accident_V2.model.Rule;
 import ru.work.work_car_accident_V2.service.SimpleRuleService;
 
@@ -31,7 +28,7 @@ public class RuleController {
     }
 
     @GetMapping("/formUpdateRule")
-    public String formUpdateRule(Model model, Integer id) {
+    public String formUpdateRule(Model model, @RequestParam("id") int id) {
         var rsl = simpleRuleService.findById(id);
         model.addAttribute("rule", rsl.get());
         return "rule/updateRule";

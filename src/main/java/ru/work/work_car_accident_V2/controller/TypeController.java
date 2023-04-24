@@ -32,7 +32,7 @@ public class TypeController {
     }
 
     @GetMapping("/formUpdateType")
-    public String formUpdateType(Model model, Integer id){
+    public String formUpdateType(Model model, Integer id) {
         var rsl = typeService.findById(id);
         model.addAttribute("type", rsl.get());
         return "type/updateType";
@@ -41,11 +41,11 @@ public class TypeController {
     @PostMapping("/createType")
     public String create(@ModelAttribute AccidentType accidentType) {
         typeService.save(accidentType);
-         return "redirect:/type/formIndexType";
+        return "redirect:/type/formIndexType";
     }
 
     @PostMapping("/updateType")
-    public String update(@ModelAttribute AccidentType accidentType){
+    public String update(@ModelAttribute AccidentType accidentType) {
         typeService.update(accidentType);
         return "redirect:/type/formIndexType";
     }
