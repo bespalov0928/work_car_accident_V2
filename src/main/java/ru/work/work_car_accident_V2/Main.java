@@ -8,14 +8,13 @@ import org.springframework.context.annotation.Bean;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootApplication
-//public class Main extends SpringBootServletInitializer {
-public class Main {
+public class Main extends SpringBootServletInitializer {
+//public class Main {
 
-//    @Override
-//    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-//        return builder.sources(Main.class);
-////        return application.sources(Main.class);
-//    }
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+        return builder.sources(Main.class);
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);

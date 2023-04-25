@@ -11,11 +11,11 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@Entity
-@Table(name = "authorities")
+//@Entity
+//@Table(name = "authorities")
 public class Authority {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String authority;
 }

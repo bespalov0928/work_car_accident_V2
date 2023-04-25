@@ -33,7 +33,7 @@
 <div class="container p-3">
 
     <form th:action="@{/acc/save}" method="post" enctype="multipart/form-data">
-        <input type="text" name="id" id="id" th:value="0">
+        <input type="hidden" name="id" id="id" th:value="0">
 
         <div class="form-group">
             <label for="name">Наименование инцидента</label>
